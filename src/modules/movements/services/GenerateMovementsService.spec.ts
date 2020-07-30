@@ -1,43 +1,55 @@
-// import AppError from '@shared/errors/AppError';
+import 'reflect-metadata';
 
 import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
-import FakeAppointmentsRepository from '../repositories/fakes/FakeAppointmentsRepository';
-import ListProviderAppointmentsService from './ListProviderAppointmentsService';
+import { Square } from 'chess.js';
+import AppError from '@shared/errors/AppError';
+import GenerateMovementsService from './GenerateMovementsService';
 
-let fakeAppointmentsRepository: FakeAppointmentsRepository;
-let listProviderAppointments: ListProviderAppointmentsService;
+let generateMovements: GenerateMovementsService;
 let fakeCacheProvider: FakeCacheProvider;
 
 describe('ListProviderAppointments', () => {
   beforeEach(() => {
-    fakeAppointmentsRepository = new FakeAppointmentsRepository();
     fakeCacheProvider = new FakeCacheProvider();
-    listProviderAppointments = new ListProviderAppointmentsService(
-      fakeAppointmentsRepository,
-      fakeCacheProvider,
-    );
+    generateMovements = new GenerateMovementsService(fakeCacheProvider);
   });
 
-  it('should be able to list the appointments on a specific day', async () => {
-    const appointment1 = await fakeAppointmentsRepository.create({
-      provider_id: 'provider',
-      user_id: 'user_id',
-      date: new Date(2020, 4, 20, 14, 0, 0),
+  it('should be able to list the knight movements, given the current position', async () => {
+    const movements = await generateMovements.execute({
+      current_position: 'E2' as Square,
     });
 
-    const appointment2 = await fakeAppointmentsRepository.create({
-      provider_id: 'provider',
-      user_id: 'user_id',
-      date: new Date(2020, 4, 20, 15, 0, 0),
+    expect(movements.legal_moves).toEqual(['C3', 'D4', 'F4', 'G3']);
+  });
+
+  it('should be able to list other pieces movements', async () => {
+    const movements = await generateMovements.execute({
+      current_position: 'A2' as Square,
+      piece: 'q',
+      color: 'w',
     });
 
-    const availability = await listProviderAppointments.execute({
-      provider_id: 'provider',
-      year: 2020,
-      month: 5,
-      day: 20,
-    });
+    expect(movements.legal_moves).toEqual([
+      'A3',
+      'A4',
+      'A5',
+      'A6',
+      'A7',
+      'B3',
+      'C4',
+      'D5',
+      'E6',
+      '7+',
+    ]);
+  });
 
-    expect(availability).toEqual([appointment1, appointment2]);
+  it('should not be able to move a piece to an invalid position', async () => {
+    await expect(
+      generateMovements.execute({
+        current_position: 'B9' as Square,
+        piece: 'n',
+        color: 'w',
+      }),
+    ).rejects.toBeInstanceOf(AppError);
   });
 });
