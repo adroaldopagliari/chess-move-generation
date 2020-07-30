@@ -11,7 +11,7 @@ movementsRouter.post(
   celebrate({
     [Segments.BODY]: {
       current_position: Joi.string()
-        .regex(/^[A-E]{1}\d{1}$/)
+        .regex(/^[A-H]{1}\d{1}$/)
         .required(),
       piece: Joi.string().regex(/^[pnbrqk]{1}$/),
       color: Joi.string().regex(/^[wb]{1}$/),
