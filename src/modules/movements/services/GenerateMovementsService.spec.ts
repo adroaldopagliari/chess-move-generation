@@ -39,7 +39,7 @@ describe('ListProviderAppointments', () => {
       'C4',
       'D5',
       'E6',
-      '7+',
+      'F7',
     ]);
   });
 

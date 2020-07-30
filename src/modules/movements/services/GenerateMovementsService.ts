@@ -59,7 +59,19 @@ class ListCallsService {
         square: formattedPosition,
       });
 
-      const legal_moves = moves.map(move => move.toUpperCase().substr(-2));
+      /**
+       * Remove special characters returned from chess.js lib
+       *
+       * The piece position, in algebric notation, is composed by the last two characters,
+       * except when the movement is a promotion, in this case the last character must be
+       * removed (the character + represents that state).
+       */
+      const legal_moves = moves.map(move => {
+        if (move.substr(-1) === '+') {
+          return move.substr(-3, 2).toUpperCase();
+        }
+        return move.substr(-2).toUpperCase();
+      });
 
       movements = {
         id: uuid(),
