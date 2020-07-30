@@ -37,7 +37,7 @@ class ListCallsService {
   }: IRequest): Promise<IResponse> {
     const cacheKey = `move:${current_position}-${piece}`;
 
-    let movements; //= await this.cacheProvider.recover<IResponse>(cacheKey);
+    let movements = await this.cacheProvider.recover<IResponse>(cacheKey);
 
     if (!movements) {
       const chess = new Chess();
