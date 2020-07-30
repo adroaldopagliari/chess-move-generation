@@ -42,9 +42,11 @@ class ListCallsService {
     if (!movements) {
       const chess = new Chess();
 
+      const formattedPosition = current_position.toLowerCase() as Square;
+
       const isValidPosition = chess.put(
         { type: piece, color },
-        current_position,
+        formattedPosition,
       );
 
       if (!isValidPosition) {
@@ -53,9 +55,11 @@ class ListCallsService {
         );
       }
 
-      const legal_moves = chess.moves({
-        square: current_position,
+      const moves = chess.moves({
+        square: formattedPosition,
       });
+
+      const legal_moves = moves.map(move => move.toUpperCase().substr(-2));
 
       movements = {
         id: uuid(),
