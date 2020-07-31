@@ -65,7 +65,7 @@ post http://localhost:3333/movements
 ```
 
 <p align="center">
-  <img alt="chessmovement" title="chessmovement" src="./assets/chess-movement-generator-POST.png" width="200px">
+  <img alt="chessmovement" title="chessmovement" src="./assets/chess-movement-generator-POST.png" width="600px">
 </p>
 
 Other acceptable input parameters (piece and color):
@@ -79,7 +79,7 @@ Other acceptable input parameters (piece and color):
 
 
 <p align="center">
-  <img alt="chessmovementother" title="chessmovementother" src="./assets/chess-movement-generator-POST2.png" width="200px">
+  <img alt="chessmovementother" title="chessmovementother" src="./assets/chess-movement-generator-POST2.png" width="600px">
 </p>
 
 Expected result set (json):
