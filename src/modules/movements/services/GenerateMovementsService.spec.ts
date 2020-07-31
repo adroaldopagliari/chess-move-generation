@@ -8,7 +8,7 @@ import GenerateMovementsService from './GenerateMovementsService';
 let generateMovements: GenerateMovementsService;
 let fakeCacheProvider: FakeCacheProvider;
 
-describe('ListProviderAppointments', () => {
+describe('GenerateMovements', () => {
   beforeEach(() => {
     fakeCacheProvider = new FakeCacheProvider();
     generateMovements = new GenerateMovementsService(fakeCacheProvider);
