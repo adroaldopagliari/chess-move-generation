@@ -19,7 +19,7 @@ describe('GenerateMovements', () => {
       current_position: 'E2' as Square,
     });
 
-    expect(movements.legal_moves).toEqual(['C3', 'D4', 'F4', 'G3']);
+    expect(movements.legal_moves).toEqual(['C3', 'D4', 'F4', 'G3', 'G1', 'C1']);
   });
 
   it('should be able to list other pieces movements', async () => {
@@ -35,11 +35,22 @@ describe('GenerateMovements', () => {
       'A5',
       'A6',
       'A7',
+      'A8',
       'B3',
       'C4',
       'D5',
       'E6',
       'F7',
+      'G8',
+      'B2',
+      'C2',
+      'D2',
+      'E2',
+      'F2',
+      'G2',
+      'H2',
+      'B1',
+      'A1',
     ]);
   });
 

@@ -42,6 +42,8 @@ class ListCallsService {
     if (!movements) {
       const chess = new Chess();
 
+      chess.clear();
+
       const formattedPosition = current_position.toLowerCase() as Square;
 
       const isValidPosition = chess.put(
@@ -67,7 +69,7 @@ class ListCallsService {
        * removed (the character + represents that state).
        */
       const legal_moves = moves.map(move => {
-        if (move.substr(-1) === '+') {
+        if (move.endsWith('+') || move.endsWith('#')) {
           return move.substr(-3, 2).toUpperCase();
         }
         return move.substr(-2).toUpperCase();
