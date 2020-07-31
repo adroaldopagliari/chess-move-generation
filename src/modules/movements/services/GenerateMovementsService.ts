@@ -24,7 +24,7 @@ interface IResponse {
 }
 
 @injectable()
-class ListCallsService {
+class GenerateMovementsService {
   constructor(
     @inject('CacheProvider')
     private cacheProvider: ICacheProvider,
@@ -66,7 +66,7 @@ class ListCallsService {
        *
        * The piece position, in algebric notation, is composed by the last two characters,
        * except when the movement is a promotion, in this case the last character must be
-       * removed (the character + represents that state).
+       * removed (the character + or # represents that state).
        */
       const legal_moves = moves.map(move => {
         if (move.endsWith('+') || move.endsWith('#')) {
@@ -90,4 +90,4 @@ class ListCallsService {
   }
 }
 
-export default ListCallsService;
+export default GenerateMovementsService;
