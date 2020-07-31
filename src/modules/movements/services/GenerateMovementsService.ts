@@ -35,7 +35,7 @@ class GenerateMovementsService {
     piece = 'n',
     color = 'w',
   }: IRequest): Promise<IResponse> {
-    const cacheKey = `move:${current_position}-${piece}`;
+    const cacheKey = `move:${current_position}-${piece}-${color}`;
 
     let movements = await this.cacheProvider.recover<IResponse>(cacheKey);
 
