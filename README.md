@@ -137,7 +137,7 @@ Given the following input:
 current_position: 'E2'
 
 The expected result is:
-['C3', 'D4', 'F4', 'G3']
+['C3', 'D4', 'F4', 'G3', 'G1', 'C1']
 ```
 
 ## Deployment
