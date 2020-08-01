@@ -81,4 +81,14 @@ describe('GenerateMovements', () => {
       'D1',
     ]);
   });
+
+  it('should be able to generate moves for pawns about to get the last square', async () => {
+    const movements = await generateMovements.execute({
+      current_position: 'A2' as Square,
+      piece: 'p',
+      color: 'b',
+    });
+
+    expect(movements.legal_moves).toEqual(['A1']);
+  });
 });

@@ -79,16 +79,31 @@ class GenerateMovementsService {
       /**
        * Remove special characters returned from chess.js lib
        *
-       * The piece position, in algebric notation, is composed by the last two characters,
-       * except when the movement is a promotion, in this case the last character must be
-       * removed (the character + or # represents that state).
+       * The piece position, in algebric notation, is composed by the last
+       * two characters, except when the movement is a capture or a promotion,
+       * in this case, special characters must be removed
+       * (the characters + # = represent those states).
        */
-      const legal_moves = moves.map(move => {
+      const algebricMoves = moves.map(move => {
+        if (move.includes('=')) {
+          return move.substr(0, 2).toUpperCase();
+        }
+
         if (move.endsWith('+') || move.endsWith('#')) {
           return move.substr(-3, 2).toUpperCase();
         }
+
         return move.substr(-2).toUpperCase();
       });
+
+      /**
+       * Remove noisy pawn moves
+       *
+       * When a pawn is promoted, it can be converted to
+       * a queen, king, knight or a bishop, so the movements
+       * are quadrupled by the chess.js library.
+       */
+      const legal_moves = Array.from(new Set(algebricMoves));
 
       movements = {
         id: uuid(),
