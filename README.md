@@ -126,11 +126,12 @@ the details.
 
 ### Break down into end to end tests
 
-There're three tests to cover the GenerateMovementsService.ts:
+There're four tests to cover the GenerateMovementsService.ts:
 
 1. It should be able to list the knight movements, given the current position.
 2. It should be able to list other pieces movements.
 3. It should not be able to move a piece to an invalid position.
+4. It should be able to generate moves for black pieces.
 
 ```
 Given the following input:
