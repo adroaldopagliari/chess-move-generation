@@ -63,4 +63,22 @@ describe('GenerateMovements', () => {
       }),
     ).rejects.toBeInstanceOf(AppError);
   });
+
+  it('should be able to generate moves for black pieces', async () => {
+    const movements = await generateMovements.execute({
+      current_position: 'H5' as Square,
+      piece: 'b',
+      color: 'b',
+    });
+
+    expect(movements.legal_moves).toEqual([
+      'G6',
+      'F7',
+      'E8',
+      'G4',
+      'F3',
+      'E2',
+      'D1',
+    ]);
+  });
 });
