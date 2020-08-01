@@ -44,6 +44,21 @@ class GenerateMovementsService {
 
       chess.clear();
 
+      /**
+       * Since the game is live and the library does not have any function
+       * to change the turn, this workaround is necessary.
+       *
+       * The first turn is for whites, so a white piece is created
+       * and moved manually, then that piece is removed to prevent
+       * side effects on the board. After that move the turn goes to
+       * the blacks.
+       */
+      if (color === 'b') {
+        chess.put({ type: 'q', color: 'w' }, 'e4');
+        chess.move({ from: 'e4', to: 'e5' });
+        chess.remove('e5');
+      }
+
       const formattedPosition = current_position.toLowerCase() as Square;
 
       const isValidPosition = chess.put(
