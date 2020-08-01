@@ -13,6 +13,24 @@ These instructions will get you a copy of the project up and running on your loc
 [Git](https://git-scm.com),
 [Node.js](https://nodejs.org/en/)
 
+### Features
+
+- [x] List chess pieces legal movements with:
+  - [x] position on the board (square)
+  - [x] piece type
+      - "p" for Pawn
+      - "n" for Knight
+      - "b" for Bishop
+      - "r" for Rook
+      - "q" for Queen
+      - "k" for King
+  - [x] color (black or white)
+  - [x] list of valid movements from the current position in algebraic notation
+
+- [ ] List pawn movements in a populated board:
+  - [ ] special movements, combos and capture
+  - [ ] pawn promotion
+
 ### Installing
 
 Download or clone the source code on a local folder.
@@ -50,7 +68,7 @@ http://localhost:3333
 ## Available route
 
 List all the legal knight movements, given its current position (square),
-in algebric notation.
+in algebraic notation.
 
 POST /movements
 
